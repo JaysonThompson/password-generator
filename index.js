@@ -93,22 +93,23 @@ const characters = [
 ]
 const password1El = document.querySelector('#password-1')
 const password2El = document.querySelector('#password-2')
+const generateBtnEl = document.querySelector('#generator-btn')
 const passwordLength = 15
 
-function getRandomChars() {
+const getRandomChars = () =>  {
   let randomChars = characters[Math.floor(Math.random() * characters.length)]
   return randomChars
 }
 
-function generatePassword() {
+const generatePassword = (printEl) => {
   let password = ''
   for (let i = 0; i < passwordLength; i++) {
     password += getRandomChars()
   }
-  return password
+  printEl.textContent = password
 }
+generateBtnEl.addEventListener('click', () => {
+  generatePassword(password1El)
+  generatePassword(password2El)
+})
 
-function printPassword() {
-  password1El.textContent = generatePassword()
-  password2El.textContent = generatePassword()
-}
